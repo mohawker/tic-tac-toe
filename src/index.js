@@ -46,21 +46,21 @@ function Game(props) {
   const [stepNumber, setStepNumber] = useState(0);
 
   const handleClick = (i) => {
-    const local_history = history.slice(0, stepNumber + 1);
-    const current = local_history[local_history.length - 1];
+    const current = history[history.length - 1];
     const squares = current.squares.slice();
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
     squares[i] = xNext ? 'X' : 'O';
-    setHistory(local_history.concat([{ squares: squares }]));
+    setHistory(history.concat([{ squares: squares }]));
     setXNext(!xNext);
-    setStepNumber(local_history.length);
+    setStepNumber(history.length);
   };
 
   const jumpTo = (step) => {
     setStepNumber(step);
     setXNext(step % 2 === 0);
+    setHistory(history.slice(0, step + 1));
   };
 
   const current = history[stepNumber];
