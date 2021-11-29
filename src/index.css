@@ -1,7 +1,7 @@
-body {
+/* body {
   font: 14px 'Century Gothic', Futura, sans-serif;
   margin: 20px;
-}
+} */
 
 ol,
 ul {
@@ -17,7 +17,6 @@ ul {
 .status {
   margin-bottom: 10px;
 }
-
 .square {
   background: #48a9a6;
   border: none;
@@ -27,19 +26,26 @@ ul {
   font-size: 64px;
   font-weight: bold;
   line-height: 34px;
-  margin-right: 10px;
-  margin-top: 10px;
+  margin: 5px 5px 5px 5px;
   padding: 0;
   text-align: center;
   width: 100px;
   height: 100px;
-  transition: 0.3s;
+  transition: 0.25s;
 }
 
 .square.null:hover {
   background-color: #264653;
   cursor: pointer;
   color: rgba(221, 221, 221, 0.507);
+}
+
+.square.null.circle-hover:hover::after {
+  content: 'O';
+}
+
+.square.null.cross-hover:hover::after {
+  content: 'X';
 }
 
 .square.cross {
@@ -50,15 +56,29 @@ ul {
   background-color: #c1666b;
 }
 
-/* .kbd-navigation .square:focus {
-  background: #ddd;
-} */
-
 .game {
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+.game-status {
+  background-color: #264653;
+  padding: 10px;
+  border-radius: 10px;
+  color: rgb(255, 255, 255);
+}
+
+.game-board {
+  margin: 25px 0px;
 }
 
 .game-info {
-  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.restart {
+  width: 100%;
 }
