@@ -101,8 +101,9 @@ function Game(props) {
   // });
 
   return (
-    <div className='container p-5'>
-      <div className='game card p-5'>
+    <div className='container p-3'>
+      <div className='alert alert-danger'> Screen Size is too narrow! </div>
+      <div className='game card p-3'>
         <div className='game-title display-4'>Tic-Tac-Toe</div>
         <div className='game-title lead'>Developed on React</div>
         <div class='card-body'>
