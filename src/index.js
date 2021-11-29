@@ -3,8 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 function Square(props) {
+  const type = ` square ${
+    props.value === 'X' ? 'cross' : props.value === 'O' ? 'circle' : 'null'
+  }`;
   return (
-    <button className='square' onClick={props.onClick}>
+    <button className={type} onClick={props.onClick}>
       {props.value}
     </button>
   );
@@ -86,11 +89,12 @@ function Game(props) {
 
   return (
     <div className='game'>
+      <div className='game-title'>Tic-Tac-Toe</div>
+      <div className='game-status'>{status}</div>
       <div className='game-board'>
         <Board squares={current.squares} onClick={(i) => handleClick(i)} />
       </div>
       <div className='game-info'>
-        <div>{status}</div>
         <ol>{moves}</ol>
       </div>
     </div>
