@@ -48,7 +48,7 @@ function Game(props) {
   const handleClick = (i) => {
     const current = history[history.length - 1];
     const squares = current.squares.slice();
-    if (calculateWinner(squares) || squares[i]) {
+    if (calculateResult(squares) || squares[i]) {
       return;
     }
     squares[i] = xNext ? 'X' : 'O';
@@ -64,11 +64,13 @@ function Game(props) {
   };
 
   const current = history[stepNumber];
-  const winner = calculateWinner(current.squares);
+  const result = calculateResult(current.squares);
 
   let status;
-  if (winner) {
-    status = 'Winner: ' + winner;
+  if (result === 'draw') {
+    status = 'Match draw!';
+  } else if (result) {
+    status = 'Winner: ' + result;
   } else {
     status = 'Next player: ' + (xNext ? 'X' : 'O');
   }
@@ -95,7 +97,7 @@ function Game(props) {
   );
 }
 
-function calculateWinner(squares) {
+function calculateResult(squares) {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -112,7 +114,12 @@ function calculateWinner(squares) {
       return squares[a];
     }
   }
-  return null;
+  for (let i = 0; i < squares.length; i++) {
+    if (squares[i] == null) {
+      return null;
+    }
+  }
+  return 'draw';
 }
 
 // ========================================
